@@ -117,9 +117,12 @@ def rank_scores(points):
     Notes
     -----
 
-    Sorted by ranking and alphabetically if rankings are tied.
+    Sorted by score and alphabetically if rankings are tied.
 
     """
+    # Sort first by the league points (input dict's values), but negative to
+    # sort descending, then by team name using the `sorted` builtin's `key`
+    # argument
     sorted_rankings = sorted(
         points.items(), key=lambda item: (-item[1], item[0]))
     ranking = 1

@@ -6,6 +6,7 @@ build
 dist
 *.egg-info
 *.egg
+/.eggs/*
 /doc/_build
 
 # Unit test / coverage reports
