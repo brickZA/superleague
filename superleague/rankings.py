@@ -22,7 +22,28 @@ def parse_line(line):
 
 def calculate_scores(lines):
     scores = defaultdict(lambda : 0)
+    draw_points = 1
+    win_points = 3
+
     for line in lines:
         if not line:
-            continue
+            continue        # Skip empty lines
+
+        # Get the team names and scores for the current line
+        ((team_a, score_a),
+         (team_b, score_b)) = parse_line(line)
+
+        # Access both teams to ensure that they are initialised to zero in case
+        # the team never scores any points
+        scores[team_a]
+        scores[team_b]
+
+        if score_a > score_b:
+            scores[team_a] += win_points
+        elif score_b < score_a:
+            scores[team_b] += win_points
+        elif score_a == score_b:
+            scores[team_a] += draw_points
+            scores[team_b] += draw_points
+
     return scores
