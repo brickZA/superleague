@@ -82,3 +82,19 @@ def calculate_scores(lines):
 
     return points
 
+def sort_rankings(points):
+    sorted_rankings = sorted(
+        points.items(), key=lambda item: (-item[1], item[0]))
+    ranking = 1
+    prev_score = None
+    prev_ranking = 1
+    ranking_output = []
+    for i, (team, points_score) in enumerate(sorted_rankings, 1):
+        if points_score == prev_score:
+            ranking = prev_ranking
+        else:
+            ranking = i
+        prev_score = points_score
+        prev_ranking = ranking
+        ranking_output.append((ranking, team, points_score))
+    return ranking_output

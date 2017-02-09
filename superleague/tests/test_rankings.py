@@ -4,6 +4,32 @@ import pkgutil
 
 from superleague import rankings
 
+
+# expected scores for test_input.csv data
+EXPECTED_SCORES = {
+    'Tarantulas': 6,
+    'Lions': 5,
+    'Another Average Team': 3,
+    'Middlers': 3,
+    'Zamblers': 3,
+    'FC Awesome': 1,
+    'Snakes': 1,
+    'Grouches': 0,
+}
+
+EXPECTED_RANKINGS = (
+    (1, 'Tarantulas', 6),
+    (2, 'Lions', 5),
+    (3, 'Another Average Team', 3),
+    (3, 'Middlers', 3),
+    (3, 'Zamblers', 3),
+    (6, 'FC Awesome', 1),
+    (6, 'Snakes', 1),
+    (8, 'Grouches', 0)
+)
+
+
+
 class test_parse_team_score(unittest.TestCase):
     INPUTS = (
         'Team A 1', 'Otherteam 123',
@@ -43,15 +69,10 @@ class test_calculate_scores(unittest.TestCase):
             'superleague.tests', 'test_input.csv'))
 
     def test_calculate_scores(self):
-        expected_scores = {
-            'Tarantulas': 6,
-            'Lions': 5,
-            'Another Average Team': 3,
-            'Middlers': 3,
-            'Zamblers': 3,
-            'FC Awesome': 1,
-            'Snakes': 1,
-            'Grouches': 0,
-            }
         actual_scores = rankings.calculate_scores(self.input_file)
-        self.assertEqual(actual_scores, expected_scores)
+        self.assertEqual(actual_scores, EXPECTED_SCORES)
+
+class test_sort_rankings(unittest.TestCase):
+    def test_sort_rankings(self):
+        self.assertEqual(
+            rankings.sort_rankings(EXPECTED_SCORES), list(EXPECTED_RANKINGS))
