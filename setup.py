@@ -8,9 +8,6 @@ setup(
     author="Neilen Marais",
     author_email="nmarais@gmail.com",
     packages=find_packages(),
-    scripts=[
-        "scripts/superleague.py",
-    ],
     license="BSD",
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -19,10 +16,10 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2",
     ],
+    entry_points={'console_scripts': [
+        'superleague = superleague.main:main']},
     platforms=["OS Independent"],
     keywords="soccer football league",
-    # run tests and install these requirements with python setup.py nosetests
-    tests_require=["mock"],
     zip_safe=False,
     test_suite="superleague.tests",
 )
