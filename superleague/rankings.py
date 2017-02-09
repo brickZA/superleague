@@ -52,6 +52,24 @@ def parse_line(line):
 
 
 def calculate_scores(lines):
+    """Read a sequence of data lines and calculate the points score of each team
+
+    Parameters
+    ----------
+    lines : seq of str or file-like object
+        Sequence of match results in format: "Tarantulas 1, FC Awesome 0"
+
+    Returns
+    -------
+    points : dict str->int
+        Team names as keys, league points as value.
+
+    Notes
+    -----
+
+    Rules are 3 points for a win, 1 for a draw and zero for a loss
+
+    """
     points = defaultdict(lambda : 0)
     draw_points = 1
     win_points = 3
@@ -82,6 +100,26 @@ def calculate_scores(lines):
     return points
 
 def rank_scores(points):
+    """Sort and rank teams according to league points
+
+    Parameters
+    ----------
+    points : dict str->int
+        Team names as keys, league points as value
+
+    Returns
+    -------
+    ranking_output : list of (ranking, team, points_score) tuples
+       ranking : int
+       team : str
+       points_score : int
+
+    Notes
+    -----
+
+    Sorted by ranking and alphabetically if rankings are tied.
+
+    """
     sorted_rankings = sorted(
         points.items(), key=lambda item: (-item[1], item[0]))
     ranking = 1
