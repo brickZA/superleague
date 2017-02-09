@@ -14,12 +14,14 @@ def parse_team_score(team_score):
 
 def parse_line(line):
     team_score1, team_score2 = line.strip().split(',')
-    return [
-        process_team_score(tscore.strip())
-        for tscore in (team_score1, team_score2)]
+    return tuple(
+        parse_team_score(tscore.strip())
+        for tscore in (team_score1, team_score2))
 
 
 
 # def process(fd_in, fd_out):
 #     scores = defaultdict(lambda : 0)
 #     for line in fd_in:
+#         if not line:
+#             continue
