@@ -1,6 +1,3 @@
-import argparse
-
-from sys import stdin, stdout
 from collections import defaultdict
 
 # TODO check what pep-8 says about close brakets
@@ -60,7 +57,9 @@ def calculate_scores(lines):
     win_points = 3
 
     for line in lines:
-        if not line:
+        # Note, python file iterator takes care of platform differences in line
+        # endings
+        if not line.strip():
             continue        # Skip empty lines
 
         # Get the team names and points for the current line
@@ -82,7 +81,7 @@ def calculate_scores(lines):
 
     return points
 
-def sort_rankings(points):
+def rank_scores(points):
     sorted_rankings = sorted(
         points.items(), key=lambda item: (-item[1], item[0]))
     ranking = 1

@@ -72,7 +72,7 @@ class test_calculate_scores(unittest.TestCase):
         actual_scores = rankings.calculate_scores(self.input_file)
         self.assertEqual(actual_scores, EXPECTED_SCORES)
 
-class test_sort_rankings(unittest.TestCase):
-    def test_sort_rankings(self):
+class test_rank_scores(unittest.TestCase):
+    def test_rank_scores(self):
         self.assertEqual(
-            rankings.sort_rankings(EXPECTED_SCORES), list(EXPECTED_RANKINGS))
+            rankings.rank_scores(EXPECTED_SCORES), list(EXPECTED_RANKINGS))
