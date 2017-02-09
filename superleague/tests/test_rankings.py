@@ -1,4 +1,6 @@
 import unittest
+import StringIO
+import pkgutil
 
 from superleague import rankings
 
@@ -34,3 +36,22 @@ class test_pase_line(unittest.TestCase):
                  self.INPUT_LINES, self.EXPECTED_OUTPUTS):
              actual_output = rankings.parse_line(input_val)
              self.assertEqual(actual_output, desired_output)
+
+class test_calculate_scores(unittest.TestCase):
+    def setUp(self):
+        self.input_file = StringIO.StringIO(pkgutil.get_data(
+            'superleague.tests', 'test_input.csv'))
+
+    def test_calculate_scores(self):
+        expected_scores = {
+            'Tarantulas': 6,
+            'Lions': 5,
+            'Another Average Team': 3,
+            'Middlers': 3,
+            'Zamblers': 3,
+            'FC Awesome': 1,
+            'Snakes': 1,
+            'Grouches': 0,
+            }
+        actual_scores = rankings.calculate_scores(self.input_file)
+        self.assertEqual(actual_scores, expected_scores)

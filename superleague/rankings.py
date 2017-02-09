@@ -20,8 +20,9 @@ def parse_line(line):
 
 
 
-# def process(fd_in, fd_out):
-#     scores = defaultdict(lambda : 0)
-#     for line in fd_in:
-#         if not line:
-#             continue
+def calculate_scores(lines):
+    scores = defaultdict(lambda : 0)
+    for line in lines:
+        if not line:
+            continue
+    return scores
